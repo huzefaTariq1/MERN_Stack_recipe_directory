@@ -1,0 +1,13 @@
+
+
+a:after {
+  display:block;
+  content: '';
+  border-bottom: solid 2px white;  
+  transform: scaleX(0);  
+  transition: transform 250ms ease-in-out;
+}
+a:hover:after { transform: scaleX(1); }
+
+
+

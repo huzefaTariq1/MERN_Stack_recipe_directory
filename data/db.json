@@ -1,0 +1,43 @@
+{
+    "recipes":[
+        {
+            "id":"1",
+            "title":"Zinger Burger",
+            "ingrediant":[
+                "1 bun",
+                "1 zinger peety",
+                "souces",
+                "mayo",
+                "lattice"
+            ],
+            "method":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.",
+            "cookingTime":"20 min"
+        },
+        {
+            "id":"2",
+            "title":"Chicken Burger",
+            "ingrediant":[
+                "1 bun",
+                "1 chicken peety",
+                "souces",
+                "mayo",
+                "lattice"
+            ],
+            "method":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.",
+            "cookingTime":"15 min"
+        },
+        {
+          "id":"3",
+          "title":"Biryani",
+          "ingrediant":[
+            "rice",
+            "Chicken",
+            "Yougert",
+            "Masala"
+          ],
+          "method":"In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.",
+          "cookingTime":"30 min"
+        }
+
+    ]
+}
