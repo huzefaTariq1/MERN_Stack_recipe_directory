@@ -1,7 +1,7 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import { useFetch } from '../hook/useFetch'
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 
 const Create = () => {
@@ -11,9 +11,15 @@ const Create = () => {
   let [method, setMethod] = useState("")
   let [newIngrediant,setNewIngrediant]=useState("");
   let [ingrediant,setIngrediant]=useState([]);
+  const navigate=useNavigate()
   
   const {postData,data,error}=useFetch("http://localhost:3000/recipes","POST")
 
+  useEffect(() => {
+    if(data){
+   navigate('/')
+    }
+  }, [data]);
 
 const addIngrediant=()=>{
       newIngrediant=newIngrediant.trim()
@@ -23,12 +29,10 @@ const addIngrediant=()=>{
      setNewIngrediant("")
      
 }
-console.log(ingrediant)
+
   const handleSubmit = (e) => {
     e.preventDefault()
     postData({title,ingrediant,method,time})
-    
-
   }
   return (
     <>
