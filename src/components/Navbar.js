@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import './navbar.css'
+import SearchBar from './SearchBar';
 
 const Navbar = () => {
 
@@ -44,7 +45,7 @@ const Navbar = () => {
                         {open && <>
                             <div className='mt-2 flex justify-center text-white'>
                                 <img onClick={() => setSearchOpen(!searchOpen)} className='mx-2 w-5' src={window.location.origin + '/img/icon.png'} alt='icon' ></img>
-                                {searchOpen && <input className='border rounded-lg pl-3  w-32 focus:outline-none focus:border-grey-500 focus:ring-grey-500  focus:ring-1 sm:mr-2' type="text" placeholder='Enter text' />}
+                                {searchOpen && <SearchBar/>}
                                 <button onClick={() => navigate("/create")} className='outline outline-offset-2 outline-1 bg-red-400 cursor-pointer hover:bg-red-500 p-1 px-2 text-white rounded-lg'> Create Recipe</button>
                             </div>
                         </>}
@@ -58,7 +59,7 @@ const Navbar = () => {
                     <div className='mt-2 justify-center md:block hidden text-white '>
                         <div className='flex'>
                             <img onClick={() => setSearchOpen(!searchOpen)} className='mx-2 w-5'  src={window.location.origin + '/img/icon.png'} alt='icon' ></img>
-                            {searchOpen && <input className='border rounded-lg pl-3  w-32 focus:outline-none focus:border-grey-500 focus:ring-grey-500  focus:ring-1 sm:mr-2' type="text" placeholder='Enter text' />}
+                            {searchOpen && <SearchBar/>}
                             <button onClick={() => navigate("/create")} className='outline outline-offset-2 outline-1 bg-red-400 cursor-pointer hover:bg-red-500 p-1 px-2 text-white rounded-lg'> Create Recipe</button>
                         </div>
                     </div>
