@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Navbar from '../components/Navbar'
 import { useFetch } from '../hook/useFetch'
+import { useNavigate } from "react-router-dom";
 
 
 const Create = () => {
@@ -9,24 +10,25 @@ const Create = () => {
   let [time, setTime] = useState("")
   let [method, setMethod] = useState("")
   let [newIngrediant,setNewIngrediant]=useState("");
-  let [ingrediants,setIngrediants]=useState([]);
+  let [ingrediant,setIngrediant]=useState([]);
   
   const {postData,data,error}=useFetch("http://localhost:3000/recipes","POST")
 
 
 const addIngrediant=()=>{
       newIngrediant=newIngrediant.trim()
-     if (newIngrediant && !ingrediants.includes(newIngrediant)){
-        setIngrediants(prevIndrediant=>[...prevIndrediant,newIngrediant])
+     if (newIngrediant && !ingrediant.includes(newIngrediant)){
+        setIngrediant(prevIndrediant=>[...prevIndrediant,newIngrediant])
      }
      setNewIngrediant("")
      
 }
-console.log(ingrediants)
+console.log(ingrediant)
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(title, time, method,ingrediants)
-    postData({title,ingrediants,method,time})
+    postData({title,ingrediant,method,time})
+    
+
   }
   return (
     <>
@@ -55,9 +57,9 @@ console.log(ingrediants)
             />
           </label>
             
-             {ingrediants &&
+             {ingrediant &&
               <ul className='md:flex md:justify-around text-gray-600'>
-                {ingrediants.map((ingrediant)=>{
+                {ingrediant.map((ingrediant)=>{
                   return(
                     <li className='list-disc'>
                        {ingrediant}
