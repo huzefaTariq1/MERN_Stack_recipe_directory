@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Navbar from '../components/Navbar'
+import { useFetch } from '../hook/useFetch'
 
 
 const Create = () => {
@@ -10,6 +11,7 @@ const Create = () => {
   let [newIngrediant,setNewIngrediant]=useState("");
   let [ingrediants,setIngrediants]=useState([]);
   
+  const {postData,data,error}=useFetch("http://localhost:3000/recipes","POST")
 
 
 const addIngrediant=()=>{
@@ -24,6 +26,7 @@ console.log(ingrediants)
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(title, time, method,ingrediants)
+    postData({title,ingrediants,method,time})
   }
   return (
     <>
