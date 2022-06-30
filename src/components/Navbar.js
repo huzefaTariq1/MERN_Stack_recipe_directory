@@ -34,13 +34,7 @@ const Navbar = () => {
                             <NavLink to="/" className=' text-white hover:text-white hover:font-bold cursor-pointer duration-500 fromLeft '>Home</NavLink>
                         </li>
 
-                        <li className='md:ml-8 text-xl md:my-0 my-7 w-fit'>
-                            <NavLink to="/" className=' text-white hover:text-white hover:font-bold cursor-pointer duration-500 fromLeft '>Home</NavLink>
-                        </li>
-
-                        <li className='md:ml-8 text-xl md:my-0 my-7 w-fit'>
-                            <NavLink to="/recipes/1" className=' text-white hover:text-white hover:font-bold cursor-pointer duration-500 fromLeft '>Home</NavLink>
-                        </li>
+              
 
                         {open && <>
                             <div className='mt-2 flex justify-center text-white'>

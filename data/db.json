@@ -39,23 +39,30 @@
       "cookingTime": "30 min"
     },
     {
-      "title": "weewe",
+      "title": "Pizza",
       "ingrediant": [
-        "as",
-        "asd"
+        "Bread",
+        "Chesse",
+        "Chicken",
+        "Olive",
+        "Sauces"
       ],
-      "method": "aasa",
-      "time": "12",
-      "id": "vbqtz2_"
+      "method": "LoremIn publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.",
+      "time": "20",
+      "id": "1eTpR35"
     },
     {
-      "title": "nuts",
+      "title": "Lava Pizza",
       "ingrediant": [
-        "css"
+        "Bread",
+        "sauces",
+        "chesse",
+        "mozriila chesse",
+        "mushroom"
       ],
-      "method": "asa",
-      "time": "23",
-      "id": "AUY6DEi"
+      "method": "In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available.",
+      "time": "19",
+      "id": "64ZClyQ"
     }
   ]
 }

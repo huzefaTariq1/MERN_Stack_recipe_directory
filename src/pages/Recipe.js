@@ -5,7 +5,7 @@ const Recipe = () => {
   return (
     <div>
       <Navbar />
-      Recipes
+      
     </div>
   )
 }

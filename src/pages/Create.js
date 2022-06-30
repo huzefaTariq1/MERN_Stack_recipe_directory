@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import { useFetch } from '../hook/useFetch'
 import { useNavigate } from 'react-router-dom';
@@ -9,30 +9,30 @@ const Create = () => {
   let [title, setTitle] = useState("")
   let [time, setTime] = useState("")
   let [method, setMethod] = useState("")
-  let [newIngrediant,setNewIngrediant]=useState("");
-  let [ingrediant,setIngrediant]=useState([]);
-  const navigate=useNavigate()
-  
-  const {postData,data,error}=useFetch("http://localhost:3000/recipes","POST")
+  let [newIngrediant, setNewIngrediant] = useState("");
+  let [ingrediant, setIngrediant] = useState([]);
+  const navigate = useNavigate()
+
+  const { postData, data, error } = useFetch("http://localhost:3000/recipes", "POST")
 
   useEffect(() => {
-    if(data){
-   navigate('/')
+    if (data) {
+      navigate('/')
     }
   }, [data]);
 
-const addIngrediant=()=>{
-      newIngrediant=newIngrediant.trim()
-     if (newIngrediant && !ingrediant.includes(newIngrediant)){
-        setIngrediant(prevIndrediant=>[...prevIndrediant,newIngrediant])
-     }
-     setNewIngrediant("")
-     
-}
+  const addIngrediant = () => {
+    newIngrediant = newIngrediant.trim()
+    if (newIngrediant && !ingrediant.includes(newIngrediant)) {
+      setIngrediant(prevIndrediant => [...prevIndrediant, newIngrediant])
+    }
+    setNewIngrediant("")
+
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    postData({title,ingrediant,method,time})
+    postData({ title, ingrediant, method, time })
   }
   return (
     <>
@@ -60,23 +60,23 @@ const addIngrediant=()=>{
               value={newIngrediant}
             />
           </label>
-            
-             {ingrediant &&
-              <ul className='md:flex md:justify-around text-gray-600'>
-                {ingrediant.map((ingrediant)=>{
-                  return(
-                    <li className='list-disc'>
-                       {ingrediant}
-                    </li>
-                  )
-                })}
-              </ul>}
+
+          {ingrediant &&
+            <ul className='md:flex md:justify-around md:flex-wrap text-gray-600 '>
+              {ingrediant.map((ingrediant) => {
+                return (
+                  <li  className='list-disc md:mx-5'>
+                    {ingrediant}
+                  </li>
+                )
+              })}
+            </ul>}
 
           <center>
-          <button onClick={addIngrediant} className="bg-red-400 hover:bg-red-600 text-white font-bold py-2 px-4 rounded my-2">
-            Add
-          </button>
-        </center>
+            <button onClick={addIngrediant} className="bg-red-400 hover:bg-red-600 text-white font-bold py-2 px-4 rounded my-2">
+              Add
+            </button>
+          </center>
         </div>
 
         <label className='my-9'>
@@ -86,7 +86,7 @@ const addIngrediant=()=>{
             className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             onChange={(e) => setTime(e.target.value)}
             value={time}
-              required
+            required
           />
         </label>
 

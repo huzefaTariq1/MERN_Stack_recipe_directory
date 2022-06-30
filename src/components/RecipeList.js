@@ -2,6 +2,7 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 const RecipeList = ({recipe}) => {
   let navigate = useNavigate();
+
   return (
     <>
 

@@ -20,8 +20,6 @@ const Recipes = () => {
 
       {recipe &&  <SingleRecipe recipe={recipe} />}
         
-
-      <h1 className='text-red-500'>hello recipes</h1>
     </>
   )
 }
