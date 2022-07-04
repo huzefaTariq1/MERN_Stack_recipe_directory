@@ -8,7 +8,6 @@ const RecipeList = ({recipe}) => {
 
        <div className='bg-white rounded-md w-10/12 mx-auto my-2'>
         <div className='p-5'>
-        <img className='w-full h-full' src="img/dish.jpeg" alt='dish'></img>
         <h1 className='text-gray-600 font-bold text-3xl '>{recipe.title}</h1>
         <h1 className='text-gray-500 text-xl'>{recipe.cookingTime}</h1>
         <h1 className='text-gray-500 text-sm ' >{recipe.method.substring(0, 100)} </h1>
