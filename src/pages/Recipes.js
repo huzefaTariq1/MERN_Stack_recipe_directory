@@ -20,7 +20,7 @@ const Recipes = () => {
 
   useEffect(()=>{
    setIspending(true)
-   projectFirestore.collection('recipes').doc(id).get().then((document)=>{
+    const unsub= projectFirestore.collection('recipes').doc(id).onSnapshot((document)=>{
     if (document.exists){
      setData(document.data())
      setIspending(false)
@@ -29,12 +29,18 @@ const Recipes = () => {
       setError("could not find that recipe")
       setIspending(false)
     }
-   }).catch(err=>{
+   },err=>{
     setError(err.message)
+    setIspending(false)
    })
+   return ()=>  unsub()
   },[id])
  
-  
+  const handleUpdate=()=>{
+    projectFirestore.collection('recipes').doc(id).update({
+      title:"someThing Different"
+    })
+  }
 
   return (
     <>
@@ -42,7 +48,7 @@ const Recipes = () => {
       {ispending && <Loader />}
       {error && error}
 
-      {data &&  <SingleRecipe recipe={data} />}
+      {data &&  <SingleRecipe recipe={data} handleUpdate={handleUpdate} />}
         
     </>
   )

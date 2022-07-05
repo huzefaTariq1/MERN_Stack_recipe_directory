@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SingleRecipe = ({ recipe }) => {
+const SingleRecipe = ({ recipe,handleUpdate }) => {
     return (
         <div className='mt-5 bg-white w-10/12 mx-auto rounded-md shadow-md p-3'>
             <div className='text-gray-600 text-center text-2xl'> {recipe.title} </div>
@@ -18,6 +18,7 @@ const SingleRecipe = ({ recipe }) => {
             <div className='text-gray-500'>
                 {recipe.method}
             </div>
+            <button onClick={()=>handleUpdate()}>UpdateMe</button>
         </div>
      
     )
