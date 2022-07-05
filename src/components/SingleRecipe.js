@@ -7,9 +7,9 @@ const SingleRecipe = ({ recipe }) => {
             <div className='text-gray-500 text-center text-xl'>{recipe.cookingTime}</div>
             <ul className=' w-3/4 mx-auto text-gray-400 md:flex md:justify-between'>
                 Ingrediant:
-                {recipe.ingrediant.map((indg) => {
+                {recipe.ingrediants.map((indg,index) => {
                     return (
-                        <li>
+                        <li key={index}>
                             {indg}
                         </li>
                     )
@@ -19,6 +19,7 @@ const SingleRecipe = ({ recipe }) => {
                 {recipe.method}
             </div>
         </div>
+     
     )
 }
 
