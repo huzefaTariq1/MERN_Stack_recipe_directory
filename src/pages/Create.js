@@ -1,38 +1,38 @@
 import { useState, useEffect } from 'react'
 import Navbar from '../components/Navbar'
-import { useFetch } from '../hook/useFetch'
+import {projectFirestore} from '../firebase/config'
 import { useNavigate } from 'react-router-dom';
 
 
 const Create = () => {
 
   let [title, setTitle] = useState("")
-  let [time, setTime] = useState("")
+  let [cookingTime, setTime] = useState("")
   let [method, setMethod] = useState("")
   let [newIngrediant, setNewIngrediant] = useState("");
-  let [ingrediant, setIngrediant] = useState([]);
+  let [ingrediants, setIngrediant] = useState([]);
   const navigate = useNavigate()
-
-  const { postData, data, error } = useFetch("http://localhost:3000/recipes", "POST")
-
-  useEffect(() => {
-    if (data) {
-      navigate('/')
-    }
-  }, [data]);
 
   const addIngrediant = () => {
     newIngrediant = newIngrediant.trim()
-    if (newIngrediant && !ingrediant.includes(newIngrediant)) {
+    if (newIngrediant && !ingrediants.includes(newIngrediant)) {
       setIngrediant(prevIndrediant => [...prevIndrediant, newIngrediant])
     }
     setNewIngrediant("")
 
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit =async (e) => {
     e.preventDefault()
-    postData({ title, ingrediant, method, time })
+      const doc= { title, ingrediants, method, cookingTime:`${cookingTime} Minutes` }
+
+      try{
+        navigate('/')
+      await projectFirestore.collection('recipes').add(doc)
+      
+      }catch(err){
+       console.log(err)
+      }
   }
   return (
     <>
@@ -61,12 +61,12 @@ const Create = () => {
             />
           </label>
 
-          {ingrediant &&
+          {ingrediants &&
             <ul className='md:flex md:justify-around md:flex-wrap text-gray-600 '>
-              {ingrediant.map((ingrediant) => {
+              {ingrediants.map((ingrediants) => {
                 return (
                   <li  className='list-disc md:mx-5'>
-                    {ingrediant}
+                    {ingrediants}
                   </li>
                 )
               })}
@@ -85,7 +85,7 @@ const Create = () => {
             type={"number"}
             className="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
             onChange={(e) => setTime(e.target.value)}
-            value={time}
+            value={cookingTime}
             required
           />
         </label>
