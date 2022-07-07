@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import ColorChanging from '../components/ColorChanging'
 import Loader from '../components/Loader'
 import Navbar from '../components/Navbar'
 import RecipeList from '../components/RecipeList'
@@ -39,10 +40,11 @@ const Home = () => {
   return (
     <>
       <Navbar />
+      <ColorChanging/>
       {ispending && <Loader />}
       {error && error}
 
-      <div className='grid md:grid-cols-4'>
+      <div className='grid md:grid-cols-3'>
         {data && data.map((recipe) => {
           return (
             <React.Fragment key={recipe.id}>

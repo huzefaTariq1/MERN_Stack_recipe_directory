@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState,useContext } from 'react'
 import Navbar from '../components/Navbar'
 import {projectFirestore} from '../firebase/config'
 import { useNavigate } from 'react-router-dom';
+import { ThemeContext } from '../context/ThemeContext';
+import ColorChanging from '../components/ColorChanging';
 
 
 const Create = () => {
@@ -12,6 +14,8 @@ const Create = () => {
   let [newIngrediant, setNewIngrediant] = useState("");
   let [ingrediants, setIngrediant] = useState([]);
   const navigate = useNavigate()
+  let {theme}=useContext(ThemeContext)
+  console.log(theme[0].bgHover)
 
   const addIngrediant = () => {
     newIngrediant = newIngrediant.trim()
@@ -37,6 +41,7 @@ const Create = () => {
   return (
     <>
       <Navbar />
+      <ColorChanging/>
       <h1 className='text-3xl text-center mb-6 mt-6 font-[Poppins] font-bold text-gray-700'>Add Recipes Here</h1>
       <form onSubmit={handleSubmit} className='bg-white w-9/12 md:w-7/12 p-3 md:p-10 md:mb-9 lg:mb-9 mx-auto rounded-md'>
         <label className='my-9'>
@@ -73,7 +78,7 @@ const Create = () => {
             </ul>}
 
           <center>
-            <button onClick={addIngrediant} className="bg-red-400 hover:bg-red-600 text-white font-bold py-2 px-4 rounded my-2">
+            <button onClick={addIngrediant} className={`${theme[0].bg} hover:${theme[0].bgHover} text-white font-bold py-2 px-4 rounded my-2`}>
               Add
             </button>
           </center>
@@ -102,7 +107,7 @@ const Create = () => {
         </label>
 
         <center>
-          <button type={"submit"} className="bg-red-400 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+          <button type={"submit"} className={`${theme[0].bg} hover:${theme[0].bgHover} text-white font-bold py-2 px-4 rounded`}>
             Button
           </button>
         </center>
