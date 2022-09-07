@@ -30,5 +30,12 @@ const postRecipes=async(req,res)=>{
             res.status(500).send('Server error')
         }
   }
+
+  const getUserRecipe=async(req,res)=>{
+    const recipes = await Recipe.find({ user: req.user.id })
+
+    res.status(200).json(recipes)
+  }
   
-  module.exports=postRecipes
+  module.exports={postRecipes,getUserRecipe}
+ 
