@@ -13,6 +13,7 @@ const postRecipes=async(req,res)=>{
         try {
 
             let recipe=new Recipe({
+                user:req.user.id,
                 title,
                 recipie_ingrediants,
                 cooking_time,

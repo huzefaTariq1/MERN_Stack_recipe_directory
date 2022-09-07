@@ -1,7 +1,7 @@
 const express=require('express')
 const dotenv=require('dotenv').config()
 const connectDB=require('./dbConnection/db')
-const recipeRoutes=require('./routes/api/recipes')
+const recipeRoutes=require('./routes/api/recipesRoutes')
 const userRoutes=require('./routes/api/userRoutes')
 
 
