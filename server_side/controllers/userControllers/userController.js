@@ -60,12 +60,73 @@ const registerUser= async(req,res)=>{
     
 }
 
-const loginUser=(req,res)=>{
-    res.json('login user')
+
+
+
+const loginUser=async(req,res)=>{
+    const error = validationResult(req)
+    if (!error.isEmpty()) {
+        return res.status(400).json({ errors: error.array() });
+    }
+
+    const { email,password } = req.body
+    
+
+  // Check for user email
+  const user = await User.findOne({ email })
+
+   
+  try {
+    // check wheather user exist or not
+    let user = await User.findOne({ email });
+    if (!user) {
+        res.status(400).json({ errors: [{ msg: "Invalid Credentials email" }] });
+    }
+
+
+    // comaparing password
+    const isMatch = await bcrypt.compare(password, user.password);
+
+
+
+    if (!isMatch) {
+        return res
+            .status(400)
+            .json({ errors: [{ msg: 'Invalid Credentials password' }] });
+    }
+
+
+    const payload = {
+        user: {
+            id: user.id
+        }
+    }
+
+    JWT.sign(
+        payload,
+        process.env.SECRECT_TOKEN,
+        { expiresIn: "1hr" },
+        (err, token) => {
+            if (err) throw err;
+            res.json({ token })
+        }
+    )
+
+} catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server error')
 }
 
-const getMe=(req,res)=>{
-    res.json('get me')
+}
+
+const getMe=async(req,res)=>{
+    try {
+        const user=await User.findById(req.user.id).select('-password')
+        res.send(user)   
+     } catch (error) {
+         res.status(500).send("server error")
+         console.log(error.message)
+     }
 }
 
 
