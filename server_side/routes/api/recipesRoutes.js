@@ -4,7 +4,7 @@ const getRecipes = require('../../controllers/recipecontrollers/getRecipes');
 const router = express.Router();
 const { body } = require('express-validator')
 const auth=require('../../middleware/authMiddleware');
-const {postRecipes, getUserRecipe ,updateRecipie} = require('../../controllers/recipecontrollers/postRecipes');
+const {postRecipes, getUserRecipe ,updateRecipie,deleteRecipie} = require('../../controllers/recipecontrollers/recipeController');
 
 // @route     /api/recipes
 // @desc      getting all recipes 
@@ -36,7 +36,7 @@ postRecipes)
 // @route     /api/recipes
 // @desc      updating recipes
 // access     private
-router.put('/update/:id',[
+router.put('/:id',[
     auth,
     [body('title').not().isEmpty(),
     body('recipie_ingrediants').not().isEmpty(),
@@ -46,5 +46,7 @@ router.put('/update/:id',[
     ]
 ],
 updateRecipie)
+
+router.delete('/:id',auth,deleteRecipie)
 
 module.exports = router
