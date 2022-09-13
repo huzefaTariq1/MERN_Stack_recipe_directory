@@ -44,6 +44,17 @@ const getUserRecipe = async (req, res) => {
 }
 
 
+const getAllRecipe=async(req,res)=>{
+    try {
+        const recipes=await Recipe.find()
+        res.status(200).json(recipes) 
+    } catch (error) {
+        console.error(error.message);
+        res.status(500).send('Server error')
+    }
+    
+}
+
 
       // controller function for updating recipe  //
 
@@ -117,4 +128,4 @@ const deleteRecipie = async (req, res) => {
     }
 }
 
-module.exports = { postRecipes, getUserRecipe, updateRecipie, deleteRecipie }
+module.exports = { postRecipes, getUserRecipe, updateRecipie, deleteRecipie,getAllRecipe }
