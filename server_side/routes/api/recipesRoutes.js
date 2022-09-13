@@ -1,15 +1,15 @@
 const express = require('express');
-const getRecipes = require('../../controllers/recipecontrollers/getRecipes');
+//const getRecipes = require('../../controllers/recipecontrollers/getRecipes');
 //const postRecipies = require('../../controllers/recipecontrollers/postRecipes');
 const router = express.Router();
 const { body } = require('express-validator')
 const auth=require('../../middleware/authMiddleware');
-const {postRecipes, getUserRecipe ,updateRecipie,deleteRecipie} = require('../../controllers/recipecontrollers/recipeController');
+const {postRecipes, getUserRecipe ,updateRecipie,deleteRecipie,getAllRecipe} = require('../../controllers/recipecontrollers/recipeController');
 
 // @route     /api/recipes
 // @desc      getting all recipes 
 // access     public
-router.get('/', getRecipes)
+router.get('/', getAllRecipe)
 
 
 // @route     /api/recipes
