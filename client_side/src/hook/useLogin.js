@@ -19,7 +19,7 @@ export const useLogin = () => {
   
       if (!response.ok) {
         setIsLoading(false)
-        setError(json.errors[0].param+" "+json.errors[0].msg)
+        setError(json.errors[0].msg)
       }
       if (response.ok) {
         // saving the user to local storage

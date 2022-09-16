@@ -5,7 +5,7 @@ import './navbar.css'
 import SearchBar from './SearchBar';
 import { ThemeContext } from '../context/ThemeContext';
 import { useLogout } from '../hook/useLogout';
-
+import { useAuthContext } from '../hook/useAuthContext';
 const Navbar = () => {
 
 
@@ -14,9 +14,10 @@ const Navbar = () => {
     let navigate = useNavigate();
     let { theme } = useContext(ThemeContext)
     const { logout } = useLogout()
+    const { user } = useAuthContext()
     const handleClick = () => {
         logout()
-      }
+    }
     return (
         <div className='shadow-md w-full fixed top-0 left-0 '>
             <div className={`md:flex items-center justify-between ${theme[0].bg}  py-4 md:px-10 px-7`}>
@@ -75,9 +76,20 @@ const Navbar = () => {
                             <img onClick={() => setSearchOpen(!searchOpen)} className='mx-2 w-5' src={window.location.origin + '/img/icon.png'} alt='icon' ></img>
                             {searchOpen && <SearchBar />}
                             <button onClick={() => navigate("/create")} className={`mr-2.5 outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Create Recipe</button>
-                            <button onClick={() => navigate("/login")} className={`mr-2.5 outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Login</button>
-                            <button onClick={() => navigate("/signup")} className={`outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Signup</button>
-                            <button onClick={handleClick} className={`outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Logout</button>
+                            {!user && (
+                                <>
+                                    <button onClick={() => navigate("/login")} className={`mr-2.5 outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Login</button>
+                                    <button onClick={() => navigate("/signup")} className={`outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Signup</button>
+                                </>
+                            )}
+
+                            {user && (
+                                <div>
+                                    <span>{user.email}</span>
+                                    <button onClick={handleClick} className={`outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Logout</button>
+                                </div>
+                            )}
+
                         </div>
                     </div>
                 </>}
