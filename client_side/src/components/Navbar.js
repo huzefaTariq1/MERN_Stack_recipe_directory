@@ -1,5 +1,5 @@
-import React, { useState ,useContext} from 'react'
-import {  NavLink } from "react-router-dom";
+import React, { useState, useContext } from 'react'
+import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import './navbar.css'
 import SearchBar from './SearchBar';
@@ -7,14 +7,14 @@ import { ThemeContext } from '../context/ThemeContext';
 
 const Navbar = () => {
 
-    
+
     let [open, setOpen] = useState(false);
     let [searchOpen, setSearchOpen] = useState(false);
     let navigate = useNavigate();
-    let {theme}=useContext(ThemeContext)
+    let { theme } = useContext(ThemeContext)
     return (
         <div className='shadow-md w-full fixed top-0 left-0 '>
-  <div className={`md:flex items-center justify-between ${theme[0].bg}  py-4 md:px-10 px-7`}>
+            <div className={`md:flex items-center justify-between ${theme[0].bg}  py-4 md:px-10 px-7`}>
                 <div className='flex items-center justify-center'>
                     <div className='font-bold text-2xl cursor-pointer flex items-center font-[Poppins] 
       text-gray-800'>
@@ -37,13 +37,25 @@ const Navbar = () => {
                             <NavLink to="/" className=' text-white hover:text-white hover:font-bold cursor-pointer duration-500 fromLeft '>Home</NavLink>
                         </li>
 
-              
+
 
                         {open && <>
                             <div className='mt-2 flex justify-center text-white'>
                                 <img onClick={() => setSearchOpen(!searchOpen)} className='mx-2 w-5' src={window.location.origin + '/img/icon.png'} alt='icon' ></img>
-                                {searchOpen && <SearchBar/>}
+                                {searchOpen && <SearchBar />}
                                 <button onClick={() => navigate("/create")} className={`outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Create Recipe</button>
+                            </div>
+                        </>}
+                        {open && <>
+                            <div className='mt-2 flex justify-center text-white'>
+                                {searchOpen && <SearchBar />}
+                                <button onClick={() => navigate("/login")} className={`outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> login</button>
+                            </div>
+                        </>}
+                        {open && <>
+                            <div className='mt-2 flex justify-center text-white'>
+                                {searchOpen && <SearchBar />}
+                                <button onClick={() => navigate("/signup")} className={`outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Signup</button>
                             </div>
                         </>}
 
@@ -55,9 +67,11 @@ const Navbar = () => {
                 {!open && <>
                     <div className='mt-2 justify-center md:block hidden text-white '>
                         <div className='flex'>
-                            <img onClick={() => setSearchOpen(!searchOpen)} className='mx-2 w-5'  src={window.location.origin + '/img/icon.png'} alt='icon' ></img>
-                            {searchOpen && <SearchBar/>}
-                            <button onClick={() => navigate("/create")} className={`outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Create Recipe</button>
+                            <img onClick={() => setSearchOpen(!searchOpen)} className='mx-2 w-5' src={window.location.origin + '/img/icon.png'} alt='icon' ></img>
+                            {searchOpen && <SearchBar />}
+                            <button onClick={() => navigate("/create")} className={`mr-2.5 outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Create Recipe</button>
+                            <button onClick={() => navigate("/login")} className={`mr-2.5 outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Login</button>
+                            <button onClick={() => navigate("/signup")} className={`outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Signup</button>
                         </div>
                     </div>
                 </>}
