@@ -80,7 +80,7 @@ const loginUser=async(req,res)=>{
     // check wheather user exist or not
     let user = await User.findOne({ email });
     if (!user) {
-        res.status(400).json({ errors: [{ msg: "Invalid Credentials email" }] });
+        res.status(400).json({ errors: [{ msg: "Invalid Credentials " }] });
     }
 
 
@@ -92,7 +92,7 @@ const loginUser=async(req,res)=>{
     if (!isMatch) {
         return res
             .status(400)
-            .json({ errors: [{ msg: 'Invalid Credentials password' }] });
+            .json({ errors: [{ msg: 'Invalid Credentials ' }] });
     }
 
 
@@ -108,7 +108,7 @@ const loginUser=async(req,res)=>{
         { expiresIn: "1hr" },
         (err, token) => {
             if (err) throw err;
-            res.json({ token })
+            res.json({ email,token })
         }
     )
 

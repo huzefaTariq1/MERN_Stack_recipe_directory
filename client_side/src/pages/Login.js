@@ -1,23 +1,25 @@
-import { useState,useContext } from "react"
+import { useState, useContext } from "react"
 import Navbar from "../components/Navbar"
 import ColorChanging from "../components/ColorChanging"
 import { ThemeContext } from "../context/ThemeContext"
+import { useLogin } from "../hook/useLogin"
 
 const Login = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
- 
-    let {theme}=useContext(ThemeContext)
-    const handleSubmit =async (e) => {
-        e.preventDefault()
-        console.log(email,password)
-      }
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const { login, error, isLoading } = useLogin()
+
+  let { theme } = useContext(ThemeContext)
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    await login(email, password)
+  }
   return (
-  <>
-   <Navbar />
-      <ColorChanging/>
+    <>
+      <Navbar />
+      <ColorChanging />
       <form onSubmit={handleSubmit} className='bg-white w-9/12 md:w-7/12 p-3 md:p-10 md:mb-9 lg:mb-9 mx-auto rounded-md'>
-      <h1 className='text-3xl text-center mb-6 mt-6 font-[Poppins] font-bold text-gray-700'>Login</h1>
+        <h1 className='text-3xl text-center mb-6 mt-6 font-[Poppins] font-bold text-gray-700'>Login</h1>
         <label className='my-9'>
           <span className='text-gray-500'>Email</span>
           <input
@@ -39,10 +41,17 @@ const Login = () => {
             required
           />
         </label>
-      
-        
+
+
         <center>
-          <button type={"submit"} className={`${theme[0].bg} hover:${theme[0].bgHover} text-white mt-1.5 font-bold py-2 px-4 rounded`}>
+          {error && <div className="flex p-4 mt-1.5 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+            <svg aria-hidden="true" className="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" ></path></svg>
+            <span className="sr-only">Info</span>
+            <div>
+              {error}
+            </div>
+          </div>}
+          <button disabled={isLoading} type={"submit"} className={`${theme[0].bg} hover:${theme[0].bgHover} text-white mt-1.5 font-bold py-2 px-4 rounded`}>
             Login
           </button>
         </center>
