@@ -20,7 +20,7 @@ const registerUser= async(req,res)=>{
          // check user already exist
          let user = await User.findOne({ email });
          if (user) {
-             res.status(400).json({ errors: [{ msg: "user alrady exists" }] });
+          return   res.status(400).json({ errors: [{ msg: "user alrady exists" ,param:'!'}] });
          }
         
          user = new User({
@@ -49,7 +49,7 @@ const registerUser= async(req,res)=>{
             {expiresIn:"1hr"},
             (err,token)=>{
                 if (err) throw err;
-                res.json({token})
+                res.json({email,token})
             }
         )
         

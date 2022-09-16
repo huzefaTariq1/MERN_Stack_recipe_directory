@@ -2,16 +2,20 @@ import { useState,useContext } from "react"
 import Navbar from "../components/Navbar"
 import ColorChanging from "../components/ColorChanging"
 import { ThemeContext } from "../context/ThemeContext"
+import { useSignup } from "../hook/useSignup"
+
 
 const Signup = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const {signup, error, isLoading} = useSignup()
+    console.log(error)
  
     let {theme}=useContext(ThemeContext)
     const handleSubmit =async (e) => {
         e.preventDefault()
-        console.log(name,email,password)
+        await signup(name,email, password)
       }
   return (
   <>
@@ -55,9 +59,18 @@ const Signup = () => {
       
         
         <center>
-          <button type={"submit"} className={`${theme[0].bg} hover:${theme[0].bgHover} text-white mt-1.5 font-bold py-2 px-4 rounded`}>
+        {error && <div className="flex p-4 mt-1.5 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+  <svg aria-hidden="true" className="flex-shrink-0 inline w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" ></path></svg>
+  <span className="sr-only">Info</span>
+  <div>
+    {error} 
+  </div>
+</div>}
+          <button  disabled={isLoading} type={"submit"} className={`${theme[0].bg} hover:${theme[0].bgHover} text-white mt-1.5 font-bold py-2 px-4 rounded`}>
             Signup
           </button>
+
+ 
         </center>
       </form>
     </>
