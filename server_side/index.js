@@ -1,6 +1,7 @@
 const express=require('express')
 const dotenv=require('dotenv').config()
 const connectDB=require('./dbConnection/db')
+const cors = require("cors");
 const recipeRoutes=require('./routes/api/recipesRoutes')
 const userRoutes=require('./routes/api/userRoutes')
 
@@ -12,6 +13,7 @@ connectDB()
 // inii middlewares
 app.use(express.json())
 app.use(express.urlencoded({extended:false}))
+app.use(cors())
 
 
 // defining routes
