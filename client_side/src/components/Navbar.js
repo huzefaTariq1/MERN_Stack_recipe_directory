@@ -40,8 +40,15 @@ const Navbar = () => {
                     <ul className={` md:flex md:items-center  md:pb-0 pb-12 absolute md:static ${theme[0].bg} md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-20 ' : 'top-[-490px]'}`}>
 
                         <li className='md:ml-8 text-xl md:my-0 my-7 w-fit'>
-                            <NavLink to="/" className=' text-white hover:text-white hover:font-bold cursor-pointer duration-500 fromLeft '>Home</NavLink>
+                            <NavLink to="/" className=' text-white hover:text-white hover:font-bold cursor-pointer duration-500 fromLeft '>All Recipies</NavLink>
                         </li>
+                    
+                      {user && <>
+                        <li className='md:ml-8 text-xl md:my-0 my-7 w-fit'>
+                            <NavLink to="/recipies/me" className=' text-white hover:text-white hover:font-bold cursor-pointer duration-500 fromLeft '>My Recipes</NavLink>
+                        </li>
+                      </>}
+                       
 
 
 

@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthContextProvider } from './context/AuthContext';
 import { RecipieContextProvider } from './context/RecipieContext';
+import { UsersRecipieContextProvider } from './context/UsersRecipieContext';
 import {
   BrowserRouter,
 } from "react-router-dom";
@@ -16,9 +17,11 @@ root.render(
   <BrowserRouter>
     <AuthContextProvider>
       <RecipieContextProvider>
-        <ThemeProvider>
-          <App />
-        </ThemeProvider>
+        <UsersRecipieContextProvider>
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
+        </UsersRecipieContextProvider>
       </RecipieContextProvider>
     </AuthContextProvider>
   </BrowserRouter>
