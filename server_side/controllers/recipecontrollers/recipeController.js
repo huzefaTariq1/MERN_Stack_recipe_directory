@@ -46,7 +46,7 @@ const getUserRecipe = async (req, res) => {
 
 const getAllRecipe=async(req,res)=>{
     try {
-        const recipes=await Recipe.find()
+        const recipes=await Recipe.find().populate('user',['name'])
         res.status(200).json(recipes) 
     } catch (error) {
         console.error(error.message);

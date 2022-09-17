@@ -2,16 +2,18 @@ import React from 'react'
 import { useNavigate } from "react-router-dom";
 import { projectFirestore } from '../firebase/config';
 const RecipeList = ({ recipe }) => {
+  console.log(recipe.user.name)
   let navigate = useNavigate();
-  const handleDelete = (id) => {
+  const handleClick = (id) => {
    // projectFirestore.collection('recipes').doc(id).delete()
-   console.log('delete')
+   console.log(id)
+  
   }
 
   return (
     <>
 
-      {/* <div className='bg-white rounded-md w-10/12 mx-auto my-2'>
+      {/* <div classNameName='bg-white rounded-md w-10/12 mx-auto my-2'>
         <div className='p-5'>
           <div className='flex justify-between'>
             <h1 className='text-gray-600 break-all font-bold text-3xl '>{recipe.title}</h1>
@@ -23,18 +25,24 @@ const RecipeList = ({ recipe }) => {
         </div>
       </div> */}
 
-<div class="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
+<div className="w-4/5 mx-auto my-auto mb-4 mt max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 " >
+  <div className='flex pt-4 pl-4'>
+<div className="inline-flex  justify-center items-center w-10 h-10 bg-gray-100 rounded-full dark:bg-gray-600">
+    <span className="font-medium text-gray-600 dark:text-gray-300">JL</span>
+</div>
+<h1 className="p-1.5">{recipe.user.name}</h1>
+</div>
     <a href="#">
-        <img class="rounded-t-lg p-4 lg:h-72 w-full md:h-56" src={recipe.imageurl} alt=""/>
+        <img className="rounded-t-lg p-4 lg:h-72 w-full md:h-56" src={recipe.imageurl} alt=""/>
     </a>
-    <div class="p-5">
+    <div className="pl-5 pr-5 pb-4">
         <a href="#">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{recipe.title}</h5>
+            <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{recipe.title}</h5>
         </a>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 break-all">{recipe.method.substring(0, 100)}</p>
-        <a href="#" class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        <p className="mb-3 font-normal text-gray-700 dark:text-gray-400 break-all">{recipe.method.substring(0, 100)}</p>
+        <a onClick={()=>handleClick(recipe._id)} href="#" className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Read more
-            <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+            <svg aria-hidden="true" className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" ></path></svg>
         </a>
     </div>
 </div>
