@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { projectFirestore } from '../firebase/config';
 const RecipeList = ({ recipe }) => {
   let navigate = useNavigate();
-  console.log(recipe)
   const handleDelete = (id) => {
    // projectFirestore.collection('recipes').doc(id).delete()
    console.log('delete')

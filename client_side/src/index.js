@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from './context/ThemeContext';
 import { AuthContextProvider } from './context/AuthContext';
+import { RecipieContextProvider } from './context/RecipieContext';
 import {
   BrowserRouter,
 } from "react-router-dom";
@@ -14,9 +15,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
     <AuthContextProvider>
-      <ThemeProvider>
-        <App />
-      </ThemeProvider>
+      <RecipieContextProvider>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </RecipieContextProvider>
     </AuthContextProvider>
   </BrowserRouter>
 

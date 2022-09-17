@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { useAuthContext } from './useAuthContext'
 
 export const useFetch = (url, method = "GET") => {
     const [data, setData] = useState(null)
@@ -6,14 +7,16 @@ export const useFetch = (url, method = "GET") => {
     const [error, setError] = useState(null)
     const [options, setOptions] = useState(null)
 
+    const { user } = useAuthContext()
 
     const postData = (postData) => {
         setOptions(
             {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
-                },
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${user.token}`
+                  },
                 body: JSON.stringify(postData)
             }
         )
@@ -25,17 +28,20 @@ export const useFetch = (url, method = "GET") => {
 
             try {
                 const respone = await fetch(url,{...fetchOptions})
-                if (!respone.ok) {
-                    throw new Error(respone.statusText)
-                }
+                
                 const json = await respone.json()
+                if (!respone.ok) {
+                    //throw new Error(respone.statusText)
+                    setError(json.msg)
+                    console.log(json.msg)
+                }
                 setIspending(false)
                 setData(json)
                 setError(null)
             } catch (err) {
                 setIspending(false)
-                setError("could not fetch");
-                console.log(err.message)
+                //setError("could not fetch");
+                //console.log(err.message)
             }
 
         }

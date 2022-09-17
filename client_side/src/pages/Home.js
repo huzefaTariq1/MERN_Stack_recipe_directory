@@ -3,8 +3,7 @@ import ColorChanging from '../components/ColorChanging'
 import Loader from '../components/Loader'
 import Navbar from '../components/Navbar'
 import RecipeList from '../components/RecipeList'
-import { projectFirestore } from '../firebase/config'
-import { useFetch } from '../hook/useFetch'
+import { useRecipieContext } from '../hook/useRecipieContext'
 
 
 
@@ -15,40 +14,35 @@ const Home = () => {
   // const [error, setError] = useState(false)
   // const [ispending, setIspending] = useState(false)
 
-  // useEffect(() => {
-  //   setIspending(true)
-  //    const unsub=  projectFirestore.collection('recipes').onSnapshot((snapshot) => {
-  //     if (snapshot.empty) {
-  //       setError('No recipes to Load')
-  //       setIspending(false)
-  //     }
-  //     else {
-  //       let results = []
-  //       snapshot.docs.forEach((doc) => {
-  //         results.push({ id: doc.id, ...doc.data() })
-  //         setData(results)
-  //         setIspending(false)
-  //       })
-  //     }
-  //   },(err=>{
-  //     setError(err.message)
-  //     setIspending(false)
-  //   }))
+  const {recipie, dispatch} = useRecipieContext()
 
-  //   return ()=>unsub()
-  // }, [])
-  let url="http://localhost:3001/api/recipes"
-  const {data ,ispending ,error}=useFetch(url)
-  console.log(data)
+  useEffect(() => {
+    const fetchRecipes = async () => {
+      const response = await fetch("http://localhost:3001/api/recipes")
+      const json = await response.json()
+
+      if (response.ok) {
+        dispatch({type: 'GET_RECIPIE', payload: json})
+      }
+    }
+
+    
+      fetchRecipes()
+    
+  }, [dispatch])
+
+  // let url="http://localhost:3001/api/recipes"
+  // const {data ,ispending ,error}=useFetch(url)
+  console.log(recipie)
   return (
     <>
       <Navbar />
       <ColorChanging/>
-      {ispending && <Loader />}
-      {error && error}
+      {/* {ispending && <Loader />}
+      {error && error} */}
 
       <div className='grid md:grid-cols-3'>
-        {data && data.map((recipe) => {
+        {recipie && recipie.map((recipe) => {
           return (
             <React.Fragment key={recipe.id}>
               <RecipeList recipe={recipe} />
@@ -56,6 +50,7 @@ const Home = () => {
           )
         })}
       </div>
+      <h1>home</h1>
     </>
   )
 }
