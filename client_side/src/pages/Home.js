@@ -39,6 +39,7 @@ const Home = () => {
 
     }
 
+    console.log("checking insoide")
 
     fetchRecipes()
 

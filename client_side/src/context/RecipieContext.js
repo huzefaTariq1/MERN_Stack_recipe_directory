@@ -12,10 +12,6 @@ export const RecipieReducer = (state, action) => {
       return {
         recipie: [action.payload, ...state.recipie]
       }
-    case 'DELETE_RECIPIE':
-      return {
-        recipie: state.recipie.filter((w) => w._id !== action.payload._id)
-      }
     default:
       return state
   }

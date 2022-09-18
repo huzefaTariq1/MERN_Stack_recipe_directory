@@ -10,7 +10,7 @@ export const UsersRecipieReducer = (state, action) => {
       }
     case 'DELETE_USER_RECIPIE':
       return {
-        usersrecipie: state.usersrecipie.filter((w) => w._id !== action.payload._id)
+        usersrecipie: state.usersrecipie.filter((w) => w._id !== action.payload.id)
       }
     default:
       return state

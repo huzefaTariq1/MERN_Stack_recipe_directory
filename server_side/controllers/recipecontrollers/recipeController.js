@@ -38,12 +38,12 @@ const postRecipes = async (req, res) => {
             // controller function for geting user recipe  //
 
 const getUserRecipe = async (req, res) => {
-    const recipes = await Recipe.find({ user: req.user.id })
+    const recipes = await Recipe.find({ user: req.user.id }).populate('user')
 
     res.status(200).json(recipes)
 }
 
-
+      //controller function for getting all recipies
 const getAllRecipe=async(req,res)=>{
     try {
         const recipes=await Recipe.find().populate('user',['name'])
