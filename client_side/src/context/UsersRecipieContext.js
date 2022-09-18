@@ -12,6 +12,9 @@ export const UsersRecipieReducer = (state, action) => {
       return {
         usersrecipie: state.usersrecipie.filter((w) => w._id !== action.payload.id)
       }
+      case'UPDATE_RECIPIE':{
+        return [action.payload,...state.usersrecipie]
+      }
     default:
       return state
   }

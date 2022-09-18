@@ -66,7 +66,7 @@ const updateRecipie = async (req, res) => {
     }
 
     const { title, recipie_ingrediants, cooking_time, imageurl, method } = req.body
-    try {
+   
         // geting recipe by id
         let recipe = await Recipe.findById(req.params.id)
         console.log(recipe)
@@ -80,7 +80,7 @@ const updateRecipie = async (req, res) => {
 
 
         //  // updateing 
-
+        try {
         recipe = await Recipe.findByIdAndUpdate(req.params.id, {
             user: req.user.id,
             title,

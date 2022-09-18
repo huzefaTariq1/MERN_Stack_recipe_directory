@@ -10,6 +10,7 @@ import Recipes from '../pages/Recipes';
 import Login from '../pages/Login';
 import Signup from '../pages/Signup';
 import LoginUserRecipes from '../pages/LoginUserRecipes';
+import Update from '../pages/Update';
 
 const MyRoutes = () => {
   return (
@@ -17,6 +18,7 @@ const MyRoutes = () => {
       <Routes>
           <Route path='/' element={<Home/>}></Route>
           <Route path='/recipies/me' element={<LoginUserRecipes/>}></Route>
+          <Route path='/update/:id' element={<Update/>}></Route>
           <Route path='/create' element={<Create/>}></Route>
           <Route path='/search' element={<Search/>}></Route>  
           <Route path='/login' element={<Login/>}></Route>

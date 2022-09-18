@@ -5,17 +5,26 @@ import { ThemeContext } from '../context/ThemeContext';
 import ColorChanging from '../components/ColorChanging';
 import { useAuthContext } from '../hook/useAuthContext';
 import { useRecipieContext } from '../hook/useRecipieContext';
+import {useUserRecipieContext} from '../hook/useUserRecipieContext'
+import { useParams } from 'react-router-dom';
 
 
+const Update = () => {
 
-const Create = () => {
+    const { usersrecipie ,dispatch} = useUserRecipieContext()
+    let { id } = useParams();
+    console.log(id)
+    let editRecipie=usersrecipie.filter(obj=>obj._id===id)
+    console.log(editRecipie[0].recipie_ingrediants)
+    
+    
 
-  let [title, setTitle] = useState("")
-  let [cooking_time, setTime] = useState("")
-  let [imageurl, setImageurl] = useState("")
-  let [method, setMethod] = useState("")
+  let [title, setTitle] = useState(editRecipie[0].title)
+  let [cooking_time, setTime] = useState(editRecipie[0].title)
+  let [imageurl, setImageurl] = useState(editRecipie[0].imageurl)
+  let [method, setMethod] = useState(editRecipie[0].method)
   let [newIngrediant, setNewIngrediant] = useState("");
-  let [recipie_ingrediants, setIngrediant] = useState([]);
+  let [recipie_ingrediants, setIngrediant] = useState(editRecipie[0].recipie_ingrediants);
   const [error, setError] = useState(null)
   const [emptyFields, setEmptyFields] = useState([])
 
@@ -23,7 +32,7 @@ const Create = () => {
   const navigate = useNavigate()
   let { theme } = useContext(ThemeContext)
   const { user } = useAuthContext()
-  const { dispatch } = useRecipieContext()
+  //const { dispatch } = useRecipieContext()
 
 
   const addIngrediant = () => {
@@ -35,7 +44,7 @@ const Create = () => {
 
   }
 
-  let url = 'http://localhost:3001/api/recipes'
+  let url = `http://localhost:3001/api/recipes/${id}`
  
 
   const handleSubmit = async (e) => {
@@ -45,12 +54,22 @@ const Create = () => {
       setError('You must be logged in Add Recipie')
       return
     }
-    const doc = { title, recipie_ingrediants, imageurl, method, cooking_time: `${cooking_time} Minutes` }
+     const doc = { title, recipie_ingrediants, imageurl, method, cooking_time: `${cooking_time} Minutes` }
+    // console.log(doc)
+      doc._id=id
+     
+  
+      
+      let filter= usersrecipie.filter(obj=>obj._id!==id)
+      console.log(filter)
+      console.log(usersrecipie)
+      filter.push(doc)
+      console.log(filter)
 
     
 
     const response = await fetch(url, {
-      method: 'POST',
+      method: 'PUT',
       body: JSON.stringify(doc),
       headers: {
         'Content-Type': 'application/json',
@@ -73,8 +92,8 @@ const Create = () => {
       setError(null)
       setEmptyFields([])
       setIngrediant([])
-      dispatch({ type: 'CREATE_RECIPIE', payload: json })
-      navigate('/') 
+      dispatch({ type: 'UPDATE_RECIPIE', payload: filter })
+      navigate('/recipies/me') 
     }
   }
 
@@ -83,7 +102,7 @@ return (
   <>
     <Navbar />
     <ColorChanging />
-    <h1 className='text-3xl text-center mb-6 mt-6 font-[Poppins] font-bold text-gray-700'>Add Recipes Here</h1>
+    <h1 className='text-3xl text-center mb-6 mt-6 font-[Poppins] font-bold text-gray-700'>Update Recipes Here</h1>
     <form onSubmit={handleSubmit} className='bg-white w-9/12 md:w-7/12 p-3 md:p-10 md:mb-9 lg:mb-9 mx-auto rounded-md'>
       <label className='my-9'>
         <span className='text-gray-500'>Title</span>
@@ -167,7 +186,7 @@ return (
             </div>
           </div>}
         <button type={"submit"} className={`${theme[0].bg} hover:${theme[0].bgHover} text-white font-bold py-2 px-4 rounded`}>
-          Create Recipe
+          Update Recipe
         </button>
       </center>
     </form>
@@ -176,4 +195,4 @@ return (
 )
 }
 
-export default Create
+export default Update
