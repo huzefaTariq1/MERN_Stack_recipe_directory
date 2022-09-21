@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@media (min-width: 768px){
+.myclass{
+    font-size: 0.75rem;
+    line-height: 0.5rem;
+}
+}

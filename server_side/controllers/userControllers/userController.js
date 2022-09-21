@@ -46,7 +46,7 @@ const registerUser = async (req, res) => {
         JWT.sign(
             payload,
             process.env.SECRECT_TOKEN,
-            { expiresIn: "1hr" },
+            { expiresIn: "24hr" },
             (err, token) => {
                 if (err) throw err;
                 res.json({ email, token })
@@ -107,7 +107,7 @@ const loginUser = async (req, res) => {
         JWT.sign(
             payload,
             process.env.SECRECT_TOKEN,
-            { expiresIn: "1hr" },
+            { expiresIn: "24hr" },
             (err, token) => {
                 if (err) throw err;
                 res.json({ email, token })

@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar"
 import ColorChanging from "../components/ColorChanging"
 import { ThemeContext } from "../context/ThemeContext"
 import { useSignup } from "../hook/useSignup"
+import { useNavigate } from "react-router-dom"
 
 
 const Signup = () => {
@@ -10,12 +11,19 @@ const Signup = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { signup, error, isLoading } = useSignup()
+  const navigate = useNavigate()
 
 
   let { theme } = useContext(ThemeContext)
   const handleSubmit = async (e) => {
     e.preventDefault()
     await signup(name, email, password)
+    if (error){
+      setTimeout(() => {
+        navigate('/')
+     }, 1000);
+    }
+    
   }
   return (
     <>

@@ -13,18 +13,17 @@ const Update = () => {
 
     const { usersrecipie ,dispatch} = useUserRecipieContext()
     let { id } = useParams();
-    console.log(id)
-    let editRecipie=usersrecipie.filter(obj=>obj._id===id)
-    console.log(editRecipie[0].recipie_ingrediants)
+    let editRecipie=usersrecipie && usersrecipie.filter(obj=>obj._id===id)
+   // console.log(editRecipie[0].recipie_ingrediants)
     
     
 
-  let [title, setTitle] = useState(editRecipie[0].title)
-  let [cooking_time, setTime] = useState(editRecipie[0].title)
-  let [imageurl, setImageurl] = useState(editRecipie[0].imageurl)
-  let [method, setMethod] = useState(editRecipie[0].method)
+  let [title, setTitle] = useState(editRecipie && editRecipie[0].title)
+  let [cooking_time, setTime] = useState(editRecipie &&editRecipie[0].title)
+  let [imageurl, setImageurl] = useState(editRecipie && editRecipie[0].imageurl)
+  let [method, setMethod] = useState(editRecipie && editRecipie[0].method)
   let [newIngrediant, setNewIngrediant] = useState("");
-  let [recipie_ingrediants, setIngrediant] = useState(editRecipie[0].recipie_ingrediants);
+  let [recipie_ingrediants, setIngrediant] = useState(editRecipie && editRecipie[0].recipie_ingrediants);
   const [error, setError] = useState(null)
   const [emptyFields, setEmptyFields] = useState([])
 
@@ -43,6 +42,8 @@ const Update = () => {
     setNewIngrediant("")
 
   }
+
+
 
   let url = `http://localhost:3001/api/recipes/${id}`
  
@@ -117,7 +118,7 @@ return (
 
       <div className='w-3/5 mx-auto md:w-6/12 my-2 md:mt-5'>
         <label className='my-9'>
-          <span className='text-gray-500'>Recipe recipie_ingrediants</span>
+          <span className='text-gray-500'> Add more Recipe Ingrediants</span>
           <input
             type={"text"}
             className="w-full my-2 mb-1 bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
@@ -130,9 +131,11 @@ return (
           <ul className='md:flex md:justify-around md:flex-wrap text-gray-600 '>
             {recipie_ingrediants.map((recipie_ingrediants) => {
               return (
-                <li className='list-disc md:mx-5'>
-                  {recipie_ingrediants}
-                </li>
+                <div key={id} id="alert-5" className="flex break-all ml-1 mr-1 mt-1.5 p-2 bg-gray-100 rounded-lg dark:bg-gray-700" role="alert">
+                <div className="ml-3 text-sm font-medium text-gray-700 dark:text-gray-300">
+                {recipie_ingrediants}
+                </div>
+              </div>
               )
             })}
           </ul>}

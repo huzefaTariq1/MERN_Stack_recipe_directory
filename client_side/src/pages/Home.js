@@ -39,13 +39,12 @@ const Home = () => {
 
     }
 
-    console.log("checking insoide")
+  
 
     fetchRecipes()
 
   }, [dispatch])
 
-  console.log(recipie)
   return (
     <>
       <Navbar />
@@ -62,7 +61,7 @@ const Home = () => {
           )
         })}
       </div>
-      <h1>home</h1>
+     
     </>
   )
 }

@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const { body } = require('express-validator')
 const auth=require('../../middleware/authMiddleware');
-const {postRecipes, getUserRecipe ,updateRecipie,deleteRecipie,getAllRecipe} = require('../../controllers/recipecontrollers/recipeController');
+const {postRecipes, getUserRecipe ,updateRecipie,deleteRecipie,getAllRecipe,getSingleRecipe} = require('../../controllers/recipecontrollers/recipeController');
 
 // @route     /api/recipes
 // @desc      getting all recipes 
@@ -32,6 +32,11 @@ router.post('/',[
 ],
 postRecipes)
 
+
+// @route     /api/recipes/id
+// @desc      getting single recipes 
+// access     public
+router.get('/:id',getSingleRecipe)
 
 // @route     /api/recipes
 // @desc      updating recipes

@@ -55,6 +55,17 @@ const getAllRecipe=async(req,res)=>{
     
 }
 
+           //controller function for getting single recipe
+const getSingleRecipe=async(req,res)=>{
+   try {
+    let recipe = await Recipe.findById(req.params.id).populate('user',['name','email'])
+    res.json(recipe)
+   } catch (error) {
+    console.error(error.message);
+        res.status(500).send('Server error')
+   }
+}
+
 
       // controller function for updating recipe  //
 
@@ -128,4 +139,4 @@ const deleteRecipie = async (req, res) => {
     }
 }
 
-module.exports = { postRecipes, getUserRecipe, updateRecipie, deleteRecipie,getAllRecipe }
+module.exports = { postRecipes, getUserRecipe, updateRecipie, deleteRecipie,getAllRecipe,getSingleRecipe}

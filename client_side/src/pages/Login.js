@@ -3,16 +3,20 @@ import Navbar from "../components/Navbar"
 import ColorChanging from "../components/ColorChanging"
 import { ThemeContext } from "../context/ThemeContext"
 import { useLogin } from "../hook/useLogin"
+import { useNavigate } from "react-router-dom"
 
 const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const { login, error, isLoading } = useLogin()
 
+
+  const navigate = useNavigate()
   let { theme } = useContext(ThemeContext)
   const handleSubmit = async (e) => {
     e.preventDefault()
     await login(email, password)
+      navigate('/')
   }
   return (
     <>
