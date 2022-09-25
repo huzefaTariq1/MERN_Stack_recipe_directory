@@ -6,14 +6,15 @@ const RecipeList = ({ recipe }) => {
 let { theme } = useContext(ThemeContext)
   let navigate = useNavigate();
 
+  console.log(recipe.user.name.split('')[0])
 
   return (
     <>
 
-      <div className="w-4/5 mx-auto my-auto mb-4 mt max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 " >
+      <div className="w-11/12  mx-auto my-auto mb-4 mt max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 " >
         <div className='flex pt-4 pl-4'>
           <div className="inline-flex  justify-center items-center w-10 h-10 bg-gray-100 rounded-full dark:bg-gray-600">
-            <span className="font-medium text-gray-600 dark:text-gray-300">JL</span>
+            <span className="font-medium text-gray-600 dark:text-gray-300">{recipe.user.name.split('')[0]}</span>
           </div>
           <h1 className="p-1.5">{recipe.user.name}</h1>
         </div>

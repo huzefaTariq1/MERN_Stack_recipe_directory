@@ -52,7 +52,7 @@ const Home = () => {
       {ispending && <Loader />}
       {error && error} 
 
-      <div className='grid md:grid-cols-3'>
+      <div className='grid md:grid-cols-3 w-11/12 ml-auto mr-auto'>
         {recipie && recipie.map((recipe) => {
           return (
             <React.Fragment key={recipe._id}>

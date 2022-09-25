@@ -27,7 +27,7 @@ const Navbar = () => {
                             {/* <ion-icon name="logo-ionic"></ion-icon> */}
                             <img className='w-6' src={window.location.origin + '/img/logo.png'} alt="logo" />
                         </span>
-                        <h1 className='text-white'> Recipe Foods</h1>
+                        <h1 className='text-white'>My Recipe</h1>
                     </div>
 
                     <div onClick={() => setOpen(!open)} className='text-xs absolute right-8 top-6 cursor-pointer md:hidden text-white'>
@@ -36,52 +36,55 @@ const Navbar = () => {
                         {open && <img className='w-6' src={window.location.origin + '/img/cross.png'} alt='cross' />}
                     </div>
 
-                    <ul className={` md:flex md:items-center  md:pb-0 pb-12 absolute md:static ${theme[0].bg} md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 transition-all duration-500 ease-in ${open ? 'top-20 ' : 'top-[-490px]'}`}>
+                    <ul className={` md:flex md:items-center  md:pb-0 pb-12 absolute md:static ${theme[0].bg} md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0  transition-all duration-500 ease-in ${open ? 'top-20 ' : 'top-[-490px]'}`}>
 
-                        <li className='md:ml-8 text-xl md:my-0 my-7 w-fit'>
+                        <li className='md:ml-8 text-xl pl-9 md:my-0 my-7 w-fit'>
                             <NavLink to="/" className=' text-white hover:text-white hover:font-bold cursor-pointer duration-500 fromLeft '>All Recipies</NavLink>
                         </li>
 
                         {user && <>
-                            <li className='md:ml-8 text-xl md:my-0 my-7 w-fit'>
+                            <li className='m-9 md:ml-8 text-xl md:my-0 my-7 w-fit'>
                                 <NavLink to="/recipies/me" className=' text-white hover:text-white hover:font-bold cursor-pointer duration-500 fromLeft '>My Recipes</NavLink>
                             </li>
                         </>}
 
 
 
-
-                        {open && <>
-                            <div className='mt-2 flex justify-center text-white'>
-                                {/* <img onClick={() => setSearchOpen(!searchOpen)} className='mx-2 w-5' src={window.location.origin + '/img/icon.png'} alt='icon' ></img>
+                        <div className='border-2 border-white m-9 p-3 rounded-lg md:hidden lg:hidden xl:hidden 2xl:hidden' >
+                            {open && <>
+                                <div className='mt-2 flex justify-center text-white'>
+                                    {/* <img onClick={() => setSearchOpen(!searchOpen)} className='mx-2 w-5' src={window.location.origin + '/img/icon.png'} alt='icon' ></img>
                                 {searchOpen && <SearchBar />} */}
-                                <button onClick={() => navigate("/create")} className={`w-2/4 outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Create Recipe</button>
-                            </div>
-                        </>}
-                        {open && <>
-                         
-                          {!user && <>
-                            <div className='mt-2 flex justify-center text-white'>
-                                <button onClick={() => navigate("/login")} className={`w-2/4  outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> login</button>
-                            </div>
-                            <div className='mt-2 flex justify-center text-white'>
-                                <button onClick={() => navigate("/signup")} className={`w-2/4  outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Signup</button>
-                            </div>
-                          </>}
-                          
-
-
-                            {user && (
-                                <div className=' '>
-                                   <center className='sm:mt-3'> <span className='pt-1 break-all text-gray-800' >{user.email}</span></center>
-                                    <br/>
-                                    <center>
-                                    <button onClick={handleClick} className={`bg-green-300 outline-green-300 text-gray-900  outline outline-offset-2 outline-1 ${theme[0].bg} md:ml-12 cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg lg:ml-3`}> Logout</button>
-                                    </center>
-
+                                    <button onClick={() => navigate("/create")} className={`w-2/4 outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg break-all`}> Create Recipe</button>
                                 </div>
-                            )}
-                        </>}
+                            </>}
+                            {open && <>
+
+                                {!user && <>
+
+                                    <div className='mt-2 flex justify-center text-white'>
+                                        <button onClick={() => navigate("/login")} className={`w-2/4  outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> login</button>
+                                    </div>
+                                    <div className='mt-2 flex justify-center text-white'>
+                                        <button onClick={() => navigate("/signup")} className={`w-2/4  outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Signup</button>
+                                    </div>
+                                </>}
+
+
+
+                                {user && (
+                                    <div className=' '>
+                                        <center className='sm:mt-3 m-2'> <span className='pt-1 break-all text-white' >{user.email}</span></center>
+
+                                        <center>
+                                            <button onClick={handleClick} className={`bg-green-300 outline-green-300 text-gray-900  outline outline-offset-2 outline-1 ${theme[0].bg} md:ml-12 cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg lg:ml-3`}> Logout</button>
+                                        </center>
+
+                                    </div>
+                                )}
+
+                            </>}
+                        </div>
                         {/* {open && <>
                             <div className='mt-2 flex justify-center text-white'>
                                 <button onClick={() => navigate("/signup")} className={`w-2/4  outline outline-offset-2 outline-1 ${theme[0].bg} cursor-pointer hover:${theme[0].bhHover} p-1 px-2 text-white rounded-lg`}> Signup</button>
