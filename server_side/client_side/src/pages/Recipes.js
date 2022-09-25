@@ -19,7 +19,7 @@ const Recipes = () => {
 
       try {
         setIspending(true)
-        const response = await fetch(`http://localhost:3001/api/recipes/${id}`)
+        const response = await fetch(`https://project-recipe-directory.herokuapp.com/api/recipes/${id}`)
         if (!response.ok) {
           throw new Error(response.statusText)
         }

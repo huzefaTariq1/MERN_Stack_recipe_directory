@@ -35,7 +35,7 @@ const Create = () => {
 
   }
 
-  let url = 'http://localhost:3001/api/recipes'
+  let url = 'https://project-recipe-directory.herokuapp.com/api/recipes'
   const handleRecipeIngrediant=(id)=>{
     const filterIngrediant = recipie_ingrediants.filter((obj, i) => i !== id)
    // console.log(filterIngrediant)

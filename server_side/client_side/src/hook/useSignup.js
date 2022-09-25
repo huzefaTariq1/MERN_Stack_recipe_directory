@@ -10,7 +10,7 @@ export const useSignup = () => {
       setIsLoading(true)
       setError(null)
   
-      const response = await fetch('http://localhost:3001/api/user', {
+      const response = await fetch('https://project-recipe-directory.herokuapp.com/api/user', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({ name,email, password })

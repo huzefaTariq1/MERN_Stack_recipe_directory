@@ -15,7 +15,7 @@ const UserRecipieList = ({ recipe }) => {
             return
           }
       
-          const response = await fetch('http://localhost:3001/api/recipes/' + id, {
+          const response = await fetch('https://project-recipe-directory.herokuapp.com/api/recipes/' + id, {
             method: 'DELETE',
             headers: {
               'Authorization': `Bearer ${user.token}`

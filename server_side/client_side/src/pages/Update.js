@@ -45,7 +45,7 @@ const Update = () => {
 
 
 
-  let url = `http://localhost:3001/api/recipes/${id}`
+  let url = `https://project-recipe-directory.herokuapp.com/api/recipes/${id}`
  
 
   const handleSubmit = async (e) => {

@@ -15,7 +15,7 @@ const LoginUserRecipes = () => {
 
   useEffect(() => {
     const fetchWorkouts = async () => {
-      const response = await fetch('http://localhost:3001/api/recipes/me', {
+      const response = await fetch('https://project-recipe-directory.herokuapp.com/api/recipes/me', {
         headers: {
           'Authorization': `Bearer ${user.token}`
         },

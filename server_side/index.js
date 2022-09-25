@@ -1,4 +1,5 @@
 const express=require('express')
+const path=require('path')
 const dotenv=require('dotenv').config()
 const connectDB=require('./dbConnection/db')
 const cors = require("cors");
@@ -19,6 +20,12 @@ app.use(cors())
 // defining routes
 app.use('/api/recipes',recipeRoutes)
 app.use('/api/user',userRoutes)
+
+app.use(express.static(path.join(__dirname, "./client_side/build")));
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/client_side/build', 'index.html'));
+});
 
 const PORT=process.env.PORT || 5000
 
